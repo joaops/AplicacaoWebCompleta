@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>System User</title>
+        <link rel="icon" href="resources/images/icon.gif" th:href="@{/resources/images/icon.gif}"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content="João Paulo Siqueira"/>
+    </head>
+    <body>
+        <nav th:replace="fragments/navbar :: navbar"> </nav>
+        <div id="container">
+            <div class="container-fluid">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div>
+                    <a href="#" th:href="@{/system/user/add}">Add new user</a>
+                </div>
+                <table>
+                    <thead>
+                        <th>Sobrenome, Nome</th>
+                        <th>E-Mail</th>
+                        <th>Senha</th>
+                        <th>Ações</th>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${page == null}">
+                            <td colspan="4">Nenhum Usuário Encontrado!</td>
+                        </tr>
+                        <tr th:if="${page != null}" th:each="user : ${page}">
+                            <td th:text="${user.lastName} + ', ' + ${user.firstName}">Sobrenome, Nome</td>
+                            <td th:text="${user.email}">E-Mail</td>
+                            <td th:text="${user.password}">Senha</td>
+                            <td>
+                                <div class="pull-right action-buttons">
+                                    <a href="#" th:href="@{'/system/user/edit/'+${user.id}}" sec:authorize="hasAnyRole('ROLE_SYSTEM_USER_EDIT')">Edit</a>
+                                    <a href="#" th:href="@{'/system/user/delete/'+${user.id}}" sec:authorize="hasAnyRole('ROLE_SYSTEM_USER_DELETE')">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer th:replace="fragments/footer :: footer"> </footer>
+        </div>
+    </body>
+</html>

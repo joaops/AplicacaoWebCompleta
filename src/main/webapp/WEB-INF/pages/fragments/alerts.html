@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Alerts</title>
+        <link rel="icon" href="resources/images/icon.gif" th:href="@{/resources/images/icon.gif}"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content="João Paulo Siqueira"/>
+    </head>
+    <body>
+        <div th:fragment="alert (type, title, message)" role="alertdialog">
+            <div th:switch="${type}"> 
+                <div th:case="success" class="alert alert-success fade in">
+                    <h4 th:text="${title}">Alert Message Success</h4>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p th:text="${message}">Test</p>
+                </div>
+                <div th:case="info" class="alert alert-info fade in">
+                    <h4 th:text="${title}">Alert Message Info</h4>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p th:text="${message}">Test</p>
+                </div>
+                <div th:case="warning" class="alert alert-warning fade in">
+                    <h4 th:text="${title}">Alert Message Warning</h4>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p th:text="${message}">Test</p>
+                </div>
+                <div th:case="danger" class="alert alert-danger fade in">
+                    <h4 th:text="${title}">Alert Message Danger</h4>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <p th:text="${message}">Test</p>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="fragments/footer :: footer"> </footer>
+    </body>
+</html>
