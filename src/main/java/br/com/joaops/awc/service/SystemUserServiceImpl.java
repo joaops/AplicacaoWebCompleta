@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +40,9 @@ public class SystemUserServiceImpl implements SystemUserService {
     
     @Autowired
     private SystemUserRepository repository;
+    
+    @Autowired
+    private PasswordEncoder encoder;
     
     @Autowired
     private Mapper mapper;
@@ -56,7 +60,7 @@ public class SystemUserServiceImpl implements SystemUserService {
         user.setMiddleName(sysuser.getMiddleName());
         user.setLastName(sysuser.getLastName());
         user.setEmail(sysuser.getEmail());
-        user.setPassword(sysuser.getPassword());
+        user.setPassword(encoder.encode(sysuser.getPassword()));
         user.setAccountExpiration(sysuser.getAccountExpiration());
         user.setAccountCanExpire(sysuser.getAccountCanExpire());
         user.setLocked(sysuser.getLocked());
