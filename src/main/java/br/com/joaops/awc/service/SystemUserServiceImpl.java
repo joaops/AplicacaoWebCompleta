@@ -79,7 +79,20 @@ public class SystemUserServiceImpl implements SystemUserService {
         SystemUserDto userDto = null;
         if (user != null) {
             userDto = new SystemUserDto();
-            mapper.map(user, userDto);
+            userDto.setId(user.getId());
+            userDto.setFirstName(user.getFirstName());
+            userDto.setMiddleName(user.getMiddleName());
+            userDto.setLastName(user.getLastName());
+            userDto.setEmail(user.getEmail());
+            userDto.setPassword(user.getPassword());
+            userDto.setAccountExpiration(user.getAccountExpiration());
+            userDto.setAccountCanExpire(user.getAccountCanExpire());
+            userDto.setLocked(user.getLocked());
+            userDto.setCredentialExpiration(user.getCredentialExpiration());
+            userDto.setCredentialCanExpire(user.getCredentialCanExpire());
+            userDto.setEnabled(Boolean.TRUE);
+            //userDto.setSystemUserPermission(user.getSystemUserPermission());
+            //mapper.map(user, userDto);
         }
         return userDto;
     }
