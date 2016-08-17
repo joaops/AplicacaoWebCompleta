@@ -49,10 +49,10 @@ public class SystemModuleServiceImpl implements SystemModuleService {
     @Override
     public SystemModuleDto save(SystemModuleDto moduleDto) {
         SystemModule module = new SystemModule();
-        module.setId(moduleDto.getId());
+        //module.setId(moduleDto.getId());
         module.setName(module.getName());
         module.setCategory(moduleDto.getCategory());
-        module.setSystemUserPermission((ArrayList)moduleDto.getSystemUserPermission());
+        //module.setSystemUserPermission((ArrayList)moduleDto.getSystemUserPermission());
         //mapper.map(module, moduleDto);
         module = repository.save(module);
         SystemModuleDto dto = new SystemModuleDto();

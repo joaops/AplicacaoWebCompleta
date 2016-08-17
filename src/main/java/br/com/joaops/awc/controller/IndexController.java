@@ -45,6 +45,7 @@ public class IndexController {
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView("redirect:/");
         try {
+            System.out.println("SALVANDO USUÁRIO");
             SystemUserFormDto user = new SystemUserFormDto();
             user.setFirstName("João");
             user.setMiddleName("Paulo");
@@ -54,16 +55,19 @@ public class IndexController {
             user.setPassword("admin");
             user.setConfirmPassword("admin");
             systemUserService.save(user);
+            System.out.println("USUÁRIO SALVO");
         } catch (Exception e) {
             System.err.println("[ERRO_SYSTEM_USER]: "+e);
         }
         try {
+            System.out.println("SALVANDO MÓDULO");
             SystemModuleDto moduleDto = new SystemModuleDto();
-            moduleDto.setId(1L);
+            //moduleDto.setId(1L);
             moduleDto.setName("SYSTEM");
             moduleDto.setCategory("USER");
-            moduleDto.setSystemUserPermission(new ArrayList<>());
+            //moduleDto.setSystemUserPermission(new ArrayList<>());
             systemModuleService.save(moduleDto);
+            System.out.println("MÓDULO SALVO");
         } catch (Exception e) {
             System.err.println("[ERRO_SYSTEM_MODULE]: "+e);
         }
