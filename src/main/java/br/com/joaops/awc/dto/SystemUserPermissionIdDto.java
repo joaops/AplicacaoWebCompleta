@@ -17,7 +17,6 @@
 package br.com.joaops.awc.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -42,40 +41,6 @@ public class SystemUserPermissionIdDto implements Serializable {
     
     public void setSystemModule(SystemModuleDto systemModule) {
         this.systemModule = systemModule;
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.systemUser);
-        hash = 97 * hash + Objects.hashCode(this.systemModule);
-        return hash;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final SystemUserPermissionIdDto other = (SystemUserPermissionIdDto) obj;
-        if (!Objects.equals(this.systemUser, other.systemUser)) {
-            return false;
-        }
-        if (!Objects.equals(this.systemModule, other.systemModule)) {
-            return false;
-        }
-        return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUserPermissionIdDto{" + "systemUser=" + systemUser + ", systemModule=" + systemModule + '}';
     }
     
 }

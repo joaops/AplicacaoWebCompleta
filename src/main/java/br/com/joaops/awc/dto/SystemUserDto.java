@@ -17,8 +17,7 @@
 package br.com.joaops.awc.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,13 +33,13 @@ public class SystemUserDto implements Serializable {
     private String lastName;
     private String email;
     private String password;
-    private LocalDate accountExpiration;
+    private Date accountExpiration;
     private Boolean accountCanExpire;
     private Boolean locked;
-    private LocalDate credentialExpiration;
+    private Date credentialExpiration;
     private Boolean credentialCanExpire;
     private Boolean enabled;
-    private List<SystemUserPermissionDto> systemUserPermission = new ArrayList<>();
+    private List<SystemUserPermissionDto> systemUserPermission;
     
     public Long getId() {
         return id;
@@ -90,11 +89,11 @@ public class SystemUserDto implements Serializable {
         this.password = password;
     }
     
-    public LocalDate getAccountExpiration() {
+    public Date getAccountExpiration() {
         return accountExpiration;
     }
     
-    public void setAccountExpiration(LocalDate accountExpiration) {
+    public void setAccountExpiration(Date accountExpiration) {
         this.accountExpiration = accountExpiration;
     }
     
@@ -114,11 +113,11 @@ public class SystemUserDto implements Serializable {
         this.locked = locked;
     }
     
-    public LocalDate getCredentialExpiration() {
+    public Date getCredentialExpiration() {
         return credentialExpiration;
     }
     
-    public void setCredentialExpiration(LocalDate credentialExpiration) {
+    public void setCredentialExpiration(Date credentialExpiration) {
         this.credentialExpiration = credentialExpiration;
     }
     
@@ -149,19 +148,19 @@ public class SystemUserDto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.firstName);
-        hash = 97 * hash + Objects.hashCode(this.middleName);
-        hash = 97 * hash + Objects.hashCode(this.lastName);
-        hash = 97 * hash + Objects.hashCode(this.email);
-        hash = 97 * hash + Objects.hashCode(this.password);
-        hash = 97 * hash + Objects.hashCode(this.accountExpiration);
-        hash = 97 * hash + Objects.hashCode(this.accountCanExpire);
-        hash = 97 * hash + Objects.hashCode(this.locked);
-        hash = 97 * hash + Objects.hashCode(this.credentialExpiration);
-        hash = 97 * hash + Objects.hashCode(this.credentialCanExpire);
-        hash = 97 * hash + Objects.hashCode(this.enabled);
-        hash = 97 * hash + Objects.hashCode(this.systemUserPermission);
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.firstName);
+        hash = 79 * hash + Objects.hashCode(this.middleName);
+        hash = 79 * hash + Objects.hashCode(this.lastName);
+        hash = 79 * hash + Objects.hashCode(this.email);
+        hash = 79 * hash + Objects.hashCode(this.password);
+        hash = 79 * hash + Objects.hashCode(this.accountExpiration);
+        hash = 79 * hash + Objects.hashCode(this.accountCanExpire);
+        hash = 79 * hash + Objects.hashCode(this.locked);
+        hash = 79 * hash + Objects.hashCode(this.credentialExpiration);
+        hash = 79 * hash + Objects.hashCode(this.credentialCanExpire);
+        hash = 79 * hash + Objects.hashCode(this.enabled);
+        hash = 79 * hash + Objects.hashCode(this.systemUserPermission);
         return hash;
     }
     
@@ -217,11 +216,6 @@ public class SystemUserDto implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUserDto{" + "id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", accountExpiration=" + accountExpiration + ", accountCanExpire=" + accountCanExpire + ", locked=" + locked + ", credentialExpiration=" + credentialExpiration + ", credentialCanExpire=" + credentialCanExpire + ", enabled=" + enabled + ", systemUserPermission=" + systemUserPermission + '}';
     }
     
 }

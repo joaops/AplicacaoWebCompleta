@@ -27,7 +27,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -35,12 +37,18 @@ import javax.persistence.Table;
  * @author João
  */
 @Entity
-@Table(name = "system_module")
+@Table(schema = "public",
+        name = "system_module",
+        indexes = {
+            @Index(name = "idx_id_system_module", columnList = "id_system_module")
+        }
+)
+@SequenceGenerator(name = "SystemModuleIdGenerator", sequenceName = "seq_system_module", initialValue = 1, allocationSize = 1)
 public class SystemModule implements Serializable {
     
     @Id
     @Column(name = "id_system_module", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SystemModuleIdGenerator")
     private Long id;
     
     @Column(name = "system_module_name", nullable = false)
@@ -49,7 +57,7 @@ public class SystemModule implements Serializable {
     @Column(name = "system_module_category", nullable = false)
     private String category;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "systemUserPermissionId.systemUser", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "systemUserPermissionId.systemModule", fetch = FetchType.LAZY)
     private List<SystemUserPermission> systemUserPermission = new ArrayList<>();
     
     public Long getId() {
@@ -86,7 +94,7 @@ public class SystemModule implements Serializable {
     
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.id);
         hash = 37 * hash + Objects.hashCode(this.name);
         hash = 37 * hash + Objects.hashCode(this.category);
@@ -119,11 +127,6 @@ public class SystemModule implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemModule{" + "id=" + id + ", name=" + name + ", category=" + category + ", systemUserPermission=" + systemUserPermission + '}';
     }
     
 }

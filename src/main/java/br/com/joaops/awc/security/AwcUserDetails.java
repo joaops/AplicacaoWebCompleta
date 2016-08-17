@@ -20,6 +20,7 @@ import br.com.joaops.awc.dto.SystemUserDto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.CredentialsContainer;
@@ -63,8 +64,9 @@ public class AwcUserDetails implements UserDetails, CredentialsContainer, Serial
     @Override
     public boolean isAccountNonExpired() {
         if (this.getUser().getAccountCanExpire()) {
-            LocalDate expirationDate = this.getUser().getAccountExpiration();
-            if (LocalDate.now().isAfter(expirationDate)) {
+            Calendar expirationDate = Calendar.getInstance();
+            expirationDate.setTime(this.getUser().getAccountExpiration());
+            if (Calendar.getInstance().after(expirationDate)) {
                 return Boolean.FALSE;
             } else {
                 return Boolean.TRUE;
@@ -82,8 +84,9 @@ public class AwcUserDetails implements UserDetails, CredentialsContainer, Serial
     @Override
     public boolean isCredentialsNonExpired() {
         if (this.getUser().getCredentialCanExpire()) {
-            LocalDate expirationDate  = this.getUser().getCredentialExpiration();
-            if (LocalDate.now().isAfter(expirationDate)) {
+            Calendar expirationDate = Calendar.getInstance();
+            expirationDate.setTime(this.getUser().getCredentialExpiration());
+            if (Calendar.getInstance().after(expirationDate)) {
                 return Boolean.FALSE;
             } else {
                 return Boolean.TRUE;

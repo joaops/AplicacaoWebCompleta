@@ -31,7 +31,9 @@ import javax.persistence.Table;
  * @author João
  */
 @Entity
-@Table(name = "system_user_permission")
+@Table(schema = "public",
+        name = "system_user_permission"
+)
 @AssociationOverrides({
     @AssociationOverride(name = "systemUserPermissionId.systemUser",
             joinColumns = @JoinColumn(name = "id_system_user")),
@@ -96,12 +98,12 @@ public class SystemUserPermission implements Serializable {
     
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.systemUserPermissionId);
-        hash = 43 * hash + Objects.hashCode(this.read);
-        hash = 43 * hash + Objects.hashCode(this.add);
-        hash = 43 * hash + Objects.hashCode(this.edit);
-        hash = 43 * hash + Objects.hashCode(this.delete);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.systemUserPermissionId);
+        hash = 79 * hash + Objects.hashCode(this.read);
+        hash = 79 * hash + Objects.hashCode(this.add);
+        hash = 79 * hash + Objects.hashCode(this.edit);
+        hash = 79 * hash + Objects.hashCode(this.delete);
         return hash;
     }
     
@@ -133,11 +135,6 @@ public class SystemUserPermission implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUserPermission{" + "systemUserPermissionId=" + systemUserPermissionId + ", read=" + read + ", add=" + add + ", edit=" + edit + ", delete=" + delete + '}';
     }
     
 }

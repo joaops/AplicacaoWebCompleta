@@ -47,7 +47,7 @@ public class PersistenceConfig {
         properties.setProperty("hibernate.format_sql", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop"); //trocar por validate
-        //properties.setProperty("hibernate.hbm2ddl.import_files", "/META-INF/sql/system_module_data.sql, /META-INF/sql/system_user_data.sql, /META-INF/sql/system_user_permission.sql"); //o validate não realiza importação dos arquivos sql
+        properties.setProperty("hibernate.hbm2ddl.import_files", "/META-INF/sql/system_module_data.sql, /META-INF/sql/system_user_data.sql, /META-INF/sql/system_user_permission.sql"); //o validate não realiza importação dos arquivos sql
         return properties;
     }
     

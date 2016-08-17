@@ -17,7 +17,6 @@
 package br.com.joaops.awc.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +29,7 @@ public class SystemModuleDto implements Serializable {
     private Long id;
     private String name;
     private String category;
-    private List<SystemUserPermissionDto> systemUserPermission = new ArrayList<>();
+    private List<SystemUserPermissionDto> systemUserPermission;
     
     public Long getId() {
         return id;
@@ -99,11 +98,6 @@ public class SystemModuleDto implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemModuleDto{" + "id=" + id + ", name=" + name + ", category=" + category + ", systemUserPermission=" + systemUserPermission + '}';
     }
     
 }

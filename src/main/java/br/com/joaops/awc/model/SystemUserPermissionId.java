@@ -54,8 +54,8 @@ public class SystemUserPermissionId implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.systemUser);
-        hash = 97 * hash + Objects.hashCode(this.systemModule);
+        hash = 53 * hash + Objects.hashCode(this.systemUser);
+        hash = 53 * hash + Objects.hashCode(this.systemModule);
         return hash;
     }
     
@@ -78,11 +78,6 @@ public class SystemUserPermissionId implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUserPermissionId{" + "systemUser=" + systemUser + ", systemModule=" + systemModule + '}';
     }
     
 }

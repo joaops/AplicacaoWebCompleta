@@ -17,7 +17,7 @@
 package br.com.joaops.awc.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -34,12 +34,12 @@ public class SystemUserFormDto implements Serializable {
     private String confirmEmail;
     private String password;
     private String confirmPassword;
-    private LocalDate accountExpiration;
+    private Date accountExpiration;
     private Boolean accountCanExpire = false;
     private Boolean locked = false;
-    private LocalDate credentialExpiration;
+    private Date credentialExpiration;
     private Boolean credentialCanExpire = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
     
     public Long getId() {
         return id;
@@ -105,11 +105,11 @@ public class SystemUserFormDto implements Serializable {
         this.confirmPassword = confirmPassword;
     }
     
-    public LocalDate getAccountExpiration() {
+    public Date getAccountExpiration() {
         return accountExpiration;
     }
     
-    public void setAccountExpiration(LocalDate accountExpiration) {
+    public void setAccountExpiration(Date accountExpiration) {
         this.accountExpiration = accountExpiration;
     }
     
@@ -129,11 +129,11 @@ public class SystemUserFormDto implements Serializable {
         this.locked = locked;
     }
     
-    public LocalDate getCredentialExpiration() {
+    public Date getCredentialExpiration() {
         return credentialExpiration;
     }
     
-    public void setCredentialExpiration(LocalDate credentialExpiration) {
+    public void setCredentialExpiration(Date credentialExpiration) {
         this.credentialExpiration = credentialExpiration;
     }
     
@@ -155,21 +155,21 @@ public class SystemUserFormDto implements Serializable {
     
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.firstName);
-        hash = 53 * hash + Objects.hashCode(this.middleName);
-        hash = 53 * hash + Objects.hashCode(this.lastName);
-        hash = 53 * hash + Objects.hashCode(this.email);
-        hash = 53 * hash + Objects.hashCode(this.confirmEmail);
-        hash = 53 * hash + Objects.hashCode(this.password);
-        hash = 53 * hash + Objects.hashCode(this.confirmPassword);
-        hash = 53 * hash + Objects.hashCode(this.accountExpiration);
-        hash = 53 * hash + Objects.hashCode(this.accountCanExpire);
-        hash = 53 * hash + Objects.hashCode(this.locked);
-        hash = 53 * hash + Objects.hashCode(this.credentialExpiration);
-        hash = 53 * hash + Objects.hashCode(this.credentialCanExpire);
-        hash = 53 * hash + Objects.hashCode(this.enabled);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.firstName);
+        hash = 79 * hash + Objects.hashCode(this.middleName);
+        hash = 79 * hash + Objects.hashCode(this.lastName);
+        hash = 79 * hash + Objects.hashCode(this.email);
+        hash = 79 * hash + Objects.hashCode(this.confirmEmail);
+        hash = 79 * hash + Objects.hashCode(this.password);
+        hash = 79 * hash + Objects.hashCode(this.confirmPassword);
+        hash = 79 * hash + Objects.hashCode(this.accountExpiration);
+        hash = 79 * hash + Objects.hashCode(this.accountCanExpire);
+        hash = 79 * hash + Objects.hashCode(this.locked);
+        hash = 79 * hash + Objects.hashCode(this.credentialExpiration);
+        hash = 79 * hash + Objects.hashCode(this.credentialCanExpire);
+        hash = 79 * hash + Objects.hashCode(this.enabled);
         return hash;
     }
     
@@ -228,11 +228,6 @@ public class SystemUserFormDto implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUserFormDto{" + "id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", email=" + email + ", confirmEmail=" + confirmEmail + ", password=" + password + ", confirmPassword=" + confirmPassword + ", accountExpiration=" + accountExpiration + ", accountCanExpire=" + accountCanExpire + ", locked=" + locked + ", credentialExpiration=" + credentialExpiration + ", credentialCanExpire=" + credentialCanExpire + ", enabled=" + enabled + '}';
     }
     
 }

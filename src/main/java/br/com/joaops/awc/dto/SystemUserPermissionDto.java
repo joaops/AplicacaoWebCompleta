@@ -74,11 +74,11 @@ public class SystemUserPermissionDto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.systemUserPermissionId);
-        hash = 71 * hash + Objects.hashCode(this.read);
-        hash = 71 * hash + Objects.hashCode(this.add);
-        hash = 71 * hash + Objects.hashCode(this.edit);
-        hash = 71 * hash + Objects.hashCode(this.delete);
+        hash = 97 * hash + Objects.hashCode(this.systemUserPermissionId);
+        hash = 97 * hash + Objects.hashCode(this.read);
+        hash = 97 * hash + Objects.hashCode(this.add);
+        hash = 97 * hash + Objects.hashCode(this.edit);
+        hash = 97 * hash + Objects.hashCode(this.delete);
         return hash;
     }
     
@@ -110,11 +110,6 @@ public class SystemUserPermissionDto implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUserPermissionDto{" + "systemUserPermissionId=" + systemUserPermissionId + ", read=" + read + ", add=" + add + ", edit=" + edit + ", delete=" + delete + '}';
     }
     
 }

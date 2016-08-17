@@ -17,10 +17,10 @@
 package br.com.joaops.awc.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,21 +28,31 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author João
  */
 @Entity
-@Table(name = "SYSTEM_USER")
+@Table(schema = "public",
+        name = "system_user",
+        indexes = {
+            @Index(name = "idx_id_system_user", columnList = "id_system_user"),
+            @Index(name = "idx_email", columnList = "email")
+        }
+)
+@SequenceGenerator(name = "SystemUserIdGenerator", sequenceName = "seq_system_user", initialValue = 1, allocationSize = 1)
 public class SystemUser implements Serializable {
     
     @Id
     @Column(name = "id_system_user", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SystemUserIdGenerator")
     private Long id;
     
     @Column(name = "first_name", nullable = false, unique = false, length = 100)
@@ -60,28 +70,36 @@ public class SystemUser implements Serializable {
     @Column(name = "password", nullable = false, unique = false, length = 256)
     private String password;
     
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Temporal(TemporalType.DATE)
     @Column(name = "account_expiration", nullable = true)
-    private LocalDate accountExpiration;
+    //@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    @Basic(fetch = FetchType.EAGER)
+    private Date accountExpiration;
     
     @Column(name = "account_can_expire", nullable = false)
+    @Basic(fetch = FetchType.EAGER)
     private Boolean accountCanExpire;
     
     @Column(name = "locked", nullable = false)
+    @Basic(fetch = FetchType.EAGER)
     private Boolean locked;
     
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Temporal(TemporalType.DATE)
     @Column(name = "credential_expiration", nullable = true)
-    private LocalDate credentialExpiration;
+    //@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    @Basic(fetch = FetchType.EAGER)
+    private Date credentialExpiration;
     
     @Column(name = "credential_can_expire", nullable = false)
+    @Basic(fetch = FetchType.EAGER)
     private Boolean credentialCanExpire;
     
     @Column(name = "enabled", nullable = false)
+    @Basic(fetch = FetchType.EAGER)
     private Boolean enabled;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "systemUserPermissionId.systemUser", fetch = FetchType.EAGER)
-    private List<SystemUserPermission> systemUserPermission = new ArrayList<>();
+    private List<SystemUserPermission> systemUserPermission;
     
     public Long getId() {
         return id;
@@ -131,11 +149,11 @@ public class SystemUser implements Serializable {
         this.password = password;
     }
     
-    public LocalDate getAccountExpiration() {
+    public Date getAccountExpiration() {
         return accountExpiration;
     }
     
-    public void setAccountExpiration(LocalDate accountExpiration) {
+    public void setAccountExpiration(Date accountExpiration) {
         this.accountExpiration = accountExpiration;
     }
     
@@ -155,11 +173,11 @@ public class SystemUser implements Serializable {
         this.locked = locked;
     }
     
-    public LocalDate getCredentialExpiration() {
+    public Date getCredentialExpiration() {
         return credentialExpiration;
     }
     
-    public void setCredentialExpiration(LocalDate credentialExpiration) {
+    public void setCredentialExpiration(Date credentialExpiration) {
         this.credentialExpiration = credentialExpiration;
     }
     
@@ -189,20 +207,20 @@ public class SystemUser implements Serializable {
     
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.firstName);
-        hash = 53 * hash + Objects.hashCode(this.middleName);
-        hash = 53 * hash + Objects.hashCode(this.lastName);
-        hash = 53 * hash + Objects.hashCode(this.email);
-        hash = 53 * hash + Objects.hashCode(this.password);
-        hash = 53 * hash + Objects.hashCode(this.accountExpiration);
-        hash = 53 * hash + Objects.hashCode(this.accountCanExpire);
-        hash = 53 * hash + Objects.hashCode(this.locked);
-        hash = 53 * hash + Objects.hashCode(this.credentialExpiration);
-        hash = 53 * hash + Objects.hashCode(this.credentialCanExpire);
-        hash = 53 * hash + Objects.hashCode(this.enabled);
-        hash = 53 * hash + Objects.hashCode(this.systemUserPermission);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.firstName);
+        hash = 71 * hash + Objects.hashCode(this.middleName);
+        hash = 71 * hash + Objects.hashCode(this.lastName);
+        hash = 71 * hash + Objects.hashCode(this.email);
+        hash = 71 * hash + Objects.hashCode(this.password);
+        hash = 71 * hash + Objects.hashCode(this.accountExpiration);
+        hash = 71 * hash + Objects.hashCode(this.accountCanExpire);
+        hash = 71 * hash + Objects.hashCode(this.locked);
+        hash = 71 * hash + Objects.hashCode(this.credentialExpiration);
+        hash = 71 * hash + Objects.hashCode(this.credentialCanExpire);
+        hash = 71 * hash + Objects.hashCode(this.enabled);
+        hash = 71 * hash + Objects.hashCode(this.systemUserPermission);
         return hash;
     }
     
@@ -258,11 +276,6 @@ public class SystemUser implements Serializable {
             return false;
         }
         return true;
-    }
-    
-    @Override
-    public String toString() {
-        return "SystemUser{" + "id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", accountExpiration=" + accountExpiration + ", accountCanExpire=" + accountCanExpire + ", locked=" + locked + ", credentialExpiration=" + credentialExpiration + ", credentialCanExpire=" + credentialCanExpire + ", enabled=" + enabled + ", systemUserPermission=" + systemUserPermission + '}';
     }
     
 }
