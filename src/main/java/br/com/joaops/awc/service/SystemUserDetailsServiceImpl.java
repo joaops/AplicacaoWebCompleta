@@ -50,7 +50,8 @@ public class SystemUserDetailsServiceImpl implements UserDetailsService {
         UserDetails user = null;
         SystemUserDto userDto = systemUserService.getUserByEmail(username);
         if (userDto == null) {
-            String message = messageSource.getMessage("DigestAuthenticationFilter.usernameNotFound", new Object[] {username}, LocaleContextHolder.getLocale());
+            //String message = messageSource.getMessage("DigestAuthenticationFilter.usernameNotFound", new Object[] {username}, LocaleContextHolder.getLocale());
+            String message = "Erro ao Conectar!!!";
             UsernameNotFoundException ex = new UsernameNotFoundException(message);
             throw ex;
         } else {
